@@ -1,22 +1,9 @@
 package gui;
 
 import java.awt.EventQueue;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Vector;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import com.mysql.jdbc.ResultSetMetaData;
-
-import db.DatabaseHandle;
-
-import java.awt.Component;
 
 public class MainWindow {
 
