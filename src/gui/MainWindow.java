@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
 
 public class MainWindow {
 
@@ -36,14 +37,15 @@ public class MainWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-		
-		DatabaseTable dbTable = new DatabaseTable(0);
-		
-		frame.add(new JScrollPane(dbTable.getTable()));
+		//frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+		frame.setJMenuBar(new MenuBar(frame).getBar());
+		//frame.getContentPane().add(new JScrollPane(new DatabaseTable(5).getTable()));
 	}
+
+
 	
 }
