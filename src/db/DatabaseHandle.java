@@ -51,16 +51,17 @@ public class DatabaseHandle {
 		}
 	}
 	
-	//TODO
-	public void addCitation(){
-	/*
+	public void addCitation(String artCited, String artQuot, String gs, String wos){
+	
+		String sql = "INSERT INTO citations(artcytowany, artcytujacy, gs, wos) Values( "
+				+ "'" + artCited + "', '" + artQuot + "', '" + gs + "', '" + wos + "')";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-	*/
+	
 	}
 	
 	public void deleteArticle(int id){
@@ -86,18 +87,27 @@ public class DatabaseHandle {
 	
 	}
 	
-	//TODO
 	public void deleteCitation(int id){
 		
-		//DELETE FROM nazwa_tabeli [WHERE warunek]
-	
+		String sql = "DELETE FROM citations WHERE id = '" + id + "'";
+		try {
+			stt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
-	//public static void main(String[] args){
+	/*
+	  
+	public static void main(String[] args){
 		
-		//DatabaseHandle db = new DatabaseHandle();
-		//db.addArticle(0,"ARTICLE TITLE", "AUTHORS", "place", "Pdate", "pages", 4);
-		//db.deletePublication(855);
-
-	//}
+		DatabaseHandle db = new DatabaseHandle();
+		db.addArticle(0,"ARTICLE TITLE", "AUTHORS", "place", "Pdate", "pages", 4);
+		db.deletePublication(855);
+		db.addCitation("1", "2", "b/d", "przyjete");
+		db.deleteCitation(2);
+	}
+	
+	*/
 }

@@ -63,11 +63,10 @@ public class MenuBar{
 		});
         add.add(menuItem21);
 
-        //TODO ekran dodawania cytowania
 		JMenuItem menuItem22 = new JMenuItem("Cytowanie");
 		menuItem22.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
-			//frame.getContentPane().add(new JScrollPane(new DatabaseTable(5).getTable()));
+			frame.getContentPane().add(new AddCitationFrame().getContentPane());
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});

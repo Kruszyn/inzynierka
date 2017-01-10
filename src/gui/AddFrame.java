@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AddFrame{
+public class AddFrame extends JFrame{
 
 
 	private JPanel contentPane;
@@ -107,8 +107,6 @@ public class AddFrame{
 		contentPane.add(addArticleButton, "cell 1 7,alignx leading");
 
 		
-
-
 	}
 	
 	public JPanel getContentPane(){
