@@ -39,15 +39,15 @@ public class DatabaseTable {
 	private DefaultTableModel buildTableModel() throws SQLException {
 		
 	    ResultSetMetaData metaData = (ResultSetMetaData) this.rs.getMetaData();
-	
-	    // names of columns
+
+	    
 	    Vector<String> columnNames = new Vector<String>();
 	    int columnCount = metaData.getColumnCount();
 	    for (int column = 1; column <= columnCount; column++) {
 	        columnNames.add(metaData.getColumnName(column));
 	    }
 
-	    // data of the table
+	    
 	    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 	    while (rs.next()) {
 	        Vector<Object> vector = new Vector<Object>();

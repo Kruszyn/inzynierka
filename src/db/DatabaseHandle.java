@@ -26,10 +26,10 @@ public class DatabaseHandle {
 		}
 	}
 	
-	public void addArticle(String title, String authors, String place, String Pdate, String pages, int category){
+	public void addArticle(String title, String authors, String place, String Pdate, String pages, String category){
 		 
 		String sql = "INSERT INTO articles(authors, title, place, Pdate, pages, category) Values( "
-					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages + "', '" + category + "'" + ")";
+					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages + "', '" + category +"')";
 		
 		try {
 			stt.executeUpdate(sql);
@@ -39,10 +39,10 @@ public class DatabaseHandle {
 		}
 	}
 	
-	public void addPublication(String title, String authors, String place, String Pdate, String pages, int category){
+	public void addPublication(String title, String authors, String place, String Pdate, String pages, String category){
 		
 		String sql = "INSERT INTO publications(authors, title, place, Pdate, pages, category) Values( "
-					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages + "', '" + category + "'" + ")";
+					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages  + "', '" + category + "')";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -93,11 +93,11 @@ public class DatabaseHandle {
 	
 	}
 
-	public static void main(String[] args){
+	//public static void main(String[] args){
 		
 		//DatabaseHandle db = new DatabaseHandle();
 		//db.addArticle(0,"ARTICLE TITLE", "AUTHORS", "place", "Pdate", "pages", 4);
 		//db.deletePublication(855);
 
-	}
+	//}
 }

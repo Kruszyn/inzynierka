@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
@@ -7,8 +8,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
-
-import net.miginfocom.swing.MigLayout;
 
 public class MenuBar{
 
@@ -26,6 +25,7 @@ public class MenuBar{
 		JMenuItem menuItem1 = new JMenuItem("Publikacje");
 		menuItem1.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
+			frame.setLayout(new BorderLayout());
 			frame.getContentPane().add(new JScrollPane(new DatabaseTable(5).getTable()));
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
@@ -35,6 +35,7 @@ public class MenuBar{
         JMenuItem menuItem2 = new JMenuItem("Cytowania");
         menuItem2.addActionListener((ActionEvent event) -> {
         	frame.getContentPane().removeAll();
+			frame.setLayout(new BorderLayout());
         	frame.getContentPane().add(new JScrollPane(new DatabaseTable(1).getTable()));
         	frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
@@ -44,6 +45,7 @@ public class MenuBar{
         JMenuItem menuItem3 = new JMenuItem("Artyku³y");
         menuItem3.addActionListener((ActionEvent event) -> {
         	frame.getContentPane().removeAll();
+			frame.setLayout(new BorderLayout());
         	frame.getContentPane().add(new JScrollPane(new DatabaseTable(0).getTable()));
         	frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
@@ -61,10 +63,11 @@ public class MenuBar{
 		});
         add.add(menuItem21);
 
+        //TODO ekran dodawania cytowania
 		JMenuItem menuItem22 = new JMenuItem("Cytowanie");
 		menuItem22.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
-			frame.getContentPane().add(new JScrollPane(new DatabaseTable(5).getTable()));
+			//frame.getContentPane().add(new JScrollPane(new DatabaseTable(5).getTable()));
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});

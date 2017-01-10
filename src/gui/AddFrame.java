@@ -1,11 +1,18 @@
 package gui;
 
+//TODO funkcja String[] getValues() zwracaj¹ca w tablicy wszystkie wartoœci z pól
 
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import db.DatabaseHandle;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -74,7 +81,13 @@ public class AddFrame{
 		addPublicationButton = new JButton("Dodaj publikacje");
 		addPublicationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				//	public void addArticle(String title, String authors, String place, String Pdate, String pages, int category){
+				DatabaseHandle db = new DatabaseHandle();
+				db.addPublication(titleField.getText(), authorsField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText(), categoryField.getText());
+				//TODO sprawdzenie poprawnoœci dodania
+				clearFields();
+				JOptionPane.showMessageDialog(new JFrame(),"Dodano publikacjê.");
+
 			}
 		});
 		contentPane.add(addPublicationButton, "flowx,cell 1 7,alignx center");
@@ -82,7 +95,13 @@ public class AddFrame{
 		addArticleButton = new JButton("Dodaj artykul");
 		addArticleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+			
+				DatabaseHandle db = new DatabaseHandle();
+				db.addArticle(titleField.getText(), authorsField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText(), categoryField.getText());
+				//TODO sprawdzenie poprawnoœci dodania
+				clearFields();
+				JOptionPane.showMessageDialog(new JFrame(),"Dodano artyku³.");
+
 			}
 		});
 		contentPane.add(addArticleButton, "cell 1 7,alignx leading");
@@ -94,6 +113,15 @@ public class AddFrame{
 	
 	public JPanel getContentPane(){
 		return contentPane;
+	}
+	
+	private void clearFields() {
+		titleField.setText("");
+		authorsField.setText("");
+		placeField.setText("");
+		pdateField.setText("");
+		pagesField.setText("");
+		categoryField.setText("");
 	}
 	
 }
