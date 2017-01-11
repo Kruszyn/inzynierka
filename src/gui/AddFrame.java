@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 
 public class AddFrame extends JFrame{
 
-
+	private static final long serialVersionUID = -8209693979309819481L;
 	private JPanel contentPane;
 	private JTextField authorsField;
 	private JTextField titleField;;
@@ -78,7 +78,7 @@ public class AddFrame extends JFrame{
 		contentPane.add(categoryField, "cell 1 6,growx");
 		categoryField.setColumns(10);
 		
-		addPublicationButton = new JButton("Dodaj publikacje");
+		addPublicationButton = new JButton("Dodaj publikacjê");
 		addPublicationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//	public void addArticle(String title, String authors, String place, String Pdate, String pages, int category){

@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.EventQueue;
+import java.awt.Choice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -18,7 +18,6 @@ import javax.swing.SpinnerNumberModel;
 
 import db.DatabaseHandle;
 
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 public class AddCitationFrame extends JFrame {
@@ -42,28 +41,39 @@ public class AddCitationFrame extends JFrame {
 	
 		contentPane.add(new JLabel("ID artyku³u cytowanego"), "cell 0 1");	
 		JSpinner spinnerCited = new JSpinner(createSpinerModel("publications"));
-		contentPane.add(spinnerCited, "cell 1 1");
+		contentPane.add(spinnerCited, "cell 1 1,alignx center");
 		
 		
 		contentPane.add(new JLabel("ID artyku³u cytuj¹cego"), "cell 0 2");	
 		JSpinner spinnerQuot = new JSpinner(createSpinerModel("articles"));
-		contentPane.add(spinnerQuot, "cell 1 2");
+		contentPane.add(spinnerQuot, "cell 1 2,alignx center");
 		
-		String[] options = {"brak danych","uznane","zg³oszone","nie uznane"};
-		JList<String> list = new JList<String>(options);
+		Choice choice = new Choice();
+		choice.add("brak danych");
+		choice.add("uznane");
+		choice.add("nie uznane");
+		choice.add("zg³oszone");
 		
-		contentPane.add(new JLabel("New label"), "cell 0 3");		
-		contentPane.add(list, "cell 1 3,grow");
+		contentPane.add(new JLabel("Google schoolar"), "cell 0 3");		
+		contentPane.add(choice, "cell 1 3,grow");
 		
-		JList<String> list1 = new JList<String>(options);
-
-		contentPane.add(new JLabel("New label"), "cell 0 4");
-		contentPane.add(list1, "cell 1 4,grow");
+		Choice choice2 = new Choice();
+		choice2.add("brak danych");
+		choice2.add("uznane");
+		choice2.add("nie uznane");
+		choice2.add("zg³oszone");
 		
-		JButton addCitationButton = new JButton("Dodaj publikacje");
+		contentPane.add(new JLabel("Baza dancyh 2"), "cell 0 4");
+		contentPane.add(choice2, "cell 1 4,grow");
+		
+		JButton addCitationButton = new JButton("Dodaj cytowanie");
 		addCitationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//public void addCitation(String artCited, String artQuot, String gs, String wos){
 
+				DatabaseHandle db = new DatabaseHandle();
+				db.addCitation( spinnerCited.getValue().toString(), spinnerQuot.getValue().toString(), choice.getSelectedItem(), choice2.getSelectedItem());
+				//TODO sprawdzenie poprawnoœci dodania
 				JOptionPane.showMessageDialog(new JFrame(),"Dodano cytowanie.");
 
 			}
