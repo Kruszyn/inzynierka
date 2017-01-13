@@ -97,16 +97,30 @@ public class DatabaseHandle {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void editCitation(int id, String artCited, String artQuot, String gs, String wos){
+		
+		
+		String sql = "UPDATE citations SET artcytowany='" + artCited + "', artcytujacy='" + artQuot + "', gs='" + gs + "', wos='" + wos + "' WHERE id ='" + id + "'";
+		try {
+			stt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+	}
 
 	/*
 	  
 	public static void main(String[] args){
 		
 		DatabaseHandle db = new DatabaseHandle();
-		db.addArticle(0,"ARTICLE TITLE", "AUTHORS", "place", "Pdate", "pages", 4);
-		db.deletePublication(855);
-		db.addCitation("1", "2", "b/d", "przyjete");
-		db.deleteCitation(2);
+		//db.addArticle(0,"ARTICLE TITLE", "AUTHORS", "place", "Pdate", "pages", 4);
+		//db.deletePublication(855);
+		//db.addCitation("1", "2", "b/d", "przyjete");
+		//db.deleteCitation(2);
+		db.editCitation(1, "188", "2", "przyjety", "adssa");
 	}
 	
 	*/

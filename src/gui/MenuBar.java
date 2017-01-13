@@ -9,6 +9,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 
+import net.miginfocom.swing.MigLayout;
+
 public class MenuBar{
 
 	private JMenuBar bar;
@@ -20,37 +22,20 @@ public class MenuBar{
 	private void createMenuBar(JFrame frame){
 		
 		bar = new JMenuBar();
-		JMenu display = new JMenu("Wyœwietl bazê danych");
+		JMenu display = new JMenu("Menu");
 		
-		JMenuItem menuItem1 = new JMenuItem("Publikacje");
+		JMenuItem menuItem1 = new JMenuItem("Wyœwietl bazy danych");
 		menuItem1.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
-			frame.setLayout(new BorderLayout());
-			frame.getContentPane().add(new JScrollPane(new DatabaseTable(5).getTable()));
+			frame.getContentPane().setLayout(new MigLayout("", "[][]", "[][][]"));
+			frame.getContentPane().add(new JScrollPane(new DatabaseTable(5).getTable()), "cell 0 0");
+			frame.getContentPane().add(new JScrollPane(new DatabaseTable(1).getTable()), "cell 0 1");
+			frame.getContentPane().add(new JScrollPane(new DatabaseTable(0).getTable()), "cell 0 2");
+			frame.getContentPane().add(new EditCitationFrame().getContentPane(), "cell 1 1");
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});
         display.add(menuItem1);
-
-        JMenuItem menuItem2 = new JMenuItem("Cytowania");
-        menuItem2.addActionListener((ActionEvent event) -> {
-        	frame.getContentPane().removeAll();
-			frame.setLayout(new BorderLayout());
-        	frame.getContentPane().add(new JScrollPane(new DatabaseTable(1).getTable()));
-        	frame.getContentPane().revalidate(); 
-			frame.getContentPane().repaint();
-        });
-        display.add(menuItem2);
-
-        JMenuItem menuItem3 = new JMenuItem("Artyku³y");
-        menuItem3.addActionListener((ActionEvent event) -> {
-        	frame.getContentPane().removeAll();
-			frame.setLayout(new BorderLayout());
-        	frame.getContentPane().add(new JScrollPane(new DatabaseTable(0).getTable()));
-        	frame.getContentPane().revalidate(); 
-			frame.getContentPane().repaint();
-        });
-        display.add(menuItem3);
 
         JMenu add = new JMenu("Dodaj");
         
@@ -70,8 +55,8 @@ public class MenuBar{
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});
-        add.add(menuItem22);
- 
+        add.add(menuItem22);      
+        
         bar.add(display);
         bar.add(add);
 	}
