@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
@@ -22,7 +21,7 @@ public class MenuBar{
 	private void createMenuBar(JFrame frame){
 		
 		bar = new JMenuBar();
-		JMenu display = new JMenu("Menu");
+		JMenu menu = new JMenu("Menu");
 		
 		JMenuItem menuItem1 = new JMenuItem("Wyœwietl bazy danych");
 		menuItem1.addActionListener((ActionEvent event) -> {
@@ -31,12 +30,21 @@ public class MenuBar{
 			frame.getContentPane().add(new JScrollPane(new DatabaseTable(5).getTable()), "cell 0 0");
 			frame.getContentPane().add(new JScrollPane(new DatabaseTable(1).getTable()), "cell 0 1");
 			frame.getContentPane().add(new JScrollPane(new DatabaseTable(0).getTable()), "cell 0 2");
-			frame.getContentPane().add(new EditCitationFrame().getContentPane(), "cell 1 1");
+			frame.getContentPane().add(new EditCitationFrame().getContentPane(), "cell 1 1");	
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});
-        display.add(menuItem1);
+        menu.add(menuItem1);
 
+        JMenuItem menuItem2 = new JMenuItem("Usuñ wpis z bazy danych");
+		menuItem2.addActionListener((ActionEvent event) -> {
+			frame.getContentPane().removeAll();
+			frame.getContentPane().add(new DeleteFrame().getContentPane());
+			frame.getContentPane().revalidate(); 
+			frame.getContentPane().repaint();
+		});
+        menu.add(menuItem2);
+        
         JMenu add = new JMenu("Dodaj");
         
 		JMenuItem menuItem21 = new JMenuItem("Publikacje/Artyku³ obcy");
@@ -57,12 +65,11 @@ public class MenuBar{
 		});
         add.add(menuItem22);      
         
-        bar.add(display);
+        bar.add(menu);
         bar.add(add);
 	}
 	
 	public JMenuBar getBar(){
 		return bar;
 	}
-
 }

@@ -1,8 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Choice;
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -13,17 +11,27 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.border.EmptyBorder;
-
 import db.DatabaseHandle;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EditCitationFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3921484689491913470L;
 	private JPanel contentPane;
-
+	private JSpinner spinnerId;
+	private JSpinner spinnerCited;
+	private JSpinner spinnerQuot;
+	private Choice choice;
+	private Choice choice2;
+	private JButton editBtn;
 	/**
 	 * Create the frame.
 	 */
@@ -33,25 +41,42 @@ public class EditCitationFrame extends JFrame {
 		
 		contentPane.add(new JLabel("Edycja cytowania o ID:"), "cell 0 0,alignx center");
 		
-		JSpinner spinnerId = new JSpinner(createSpinerModel("citations"));
+		spinnerId = new JSpinner(createSpinerModel("citations"));
 		spinnerId.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				JOptionPane.showMessageDialog(new JFrame(),"Dodano cytowanie.");
+				DatabaseHandle db = new DatabaseHandle();
+				ResultSet rs = null;
+				try {
+					rs = db.stt.executeQuery("SELECT * FROM citations WHERE id=" +  spinnerId.getValue().toString());
+					if(rs.next()){
+						spinnerCited.setValue(rs.getObject(2));
+						spinnerQuot.setValue(rs.getObject(3));
+						choice.select(rs.getObject(4).toString());
+						choice2.select(rs.getObject(5).toString());
+					}
+					else{
+						JOptionPane.showMessageDialog(new JFrame(),"Nie ma cytowania o takim ID w bazie danych.");
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
+			
 		});
 		contentPane.add(spinnerId, "flowx,cell 1 0");
 	
 		
 		contentPane.add(new JLabel("ID artyku³u cytowanego"), "cell 0 1");	
-		JSpinner spinnerCited = new JSpinner(createSpinerModel("publications"));
+		spinnerCited = new JSpinner(createSpinerModel("publications"));
 		contentPane.add(spinnerCited, "cell 1 1,alignx left");
 		
 		
 		contentPane.add(new JLabel("ID artyku³u cytuj¹cego"), "cell 0 2");	
-		JSpinner spinnerQuot = new JSpinner(createSpinerModel("articles"));
+		spinnerQuot = new JSpinner(createSpinerModel("articles"));
 		contentPane.add(spinnerQuot, "cell 1 2,alignx left");
 		
-		Choice choice = new Choice();
+		choice = new Choice();
 		choice.add("brak danych");
 		choice.add("uznane");
 		choice.add("nie uznane");
@@ -60,7 +85,7 @@ public class EditCitationFrame extends JFrame {
 		contentPane.add(new JLabel("Google schoolar"), "cell 0 3");		
 		contentPane.add(choice, "cell 1 3,grow");
 		
-		Choice choice2 = new Choice();
+		choice2 = new Choice();
 		choice2.add("brak danych");
 		choice2.add("uznane");
 		choice2.add("nie uznane");
@@ -69,8 +94,21 @@ public class EditCitationFrame extends JFrame {
 		contentPane.add(new JLabel("Baza dancyh 2"), "cell 0 4");
 		contentPane.add(choice2, "cell 1 4,grow");
 		
-		setContentPane(contentPane);
 
+		
+		editBtn = new JButton("Edytuj");
+		editBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DatabaseHandle db = new DatabaseHandle();		
+				db.editCitation(spinnerId.getValue().toString(), spinnerCited.getValue().toString(), spinnerQuot.getValue().toString(), choice.getSelectedItem(), choice2.getSelectedItem());
+				
+				JOptionPane.showMessageDialog(new JFrame(),"Wykonano");
+
+			}
+		});
+		contentPane.add(editBtn, "cell 0 5 2 1,alignx center");
+
+		setContentPane(contentPane);
 }
 
 	private SpinnerModel createSpinerModel(String tableName) {
@@ -104,5 +142,9 @@ public class EditCitationFrame extends JFrame {
 	
 	public JPanel getContetnPane(){
 		return contentPane;
+	}
+	
+	public JButton getEditBtn(){
+		return editBtn;
 	}
 }

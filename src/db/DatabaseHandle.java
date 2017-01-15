@@ -64,7 +64,7 @@ public class DatabaseHandle {
 	
 	}
 	
-	public void deleteArticle(int id){
+	public void deleteArticle(String id){
 	
 		String sql = "DELETE FROM articles WHERE id = '" + id + "'";
 		try {
@@ -75,7 +75,7 @@ public class DatabaseHandle {
 		}
 	}
 	
-	public void deletePublication(int id){
+	public void deletePublication(String id){
 		
 		String sql = "DELETE FROM publications WHERE id = '" + id + "'";
 		try {
@@ -87,7 +87,7 @@ public class DatabaseHandle {
 	
 	}
 	
-	public void deleteCitation(int id){
+	public void deleteCitation(String id){
 		
 		String sql = "DELETE FROM citations WHERE id = '" + id + "'";
 		try {
@@ -98,7 +98,7 @@ public class DatabaseHandle {
 		}
 	}
 	
-	public void editCitation(int id, String artCited, String artQuot, String gs, String wos){
+	public void editCitation(String id, String artCited, String artQuot, String gs, String wos){
 		
 		
 		String sql = "UPDATE citations SET artcytowany='" + artCited + "', artcytujacy='" + artQuot + "', gs='" + gs + "', wos='" + wos + "' WHERE id ='" + id + "'";
