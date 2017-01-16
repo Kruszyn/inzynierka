@@ -2,20 +2,22 @@ package gui;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import com.mysql.jdbc.ResultSetMetaData;
 
 import db.DatabaseHandle;
 
-public class DatabaseTable {
+public class DatabaseTable{
 
 	private ResultSet rs;
 	private JTable table; 
-	
 	
 	public DatabaseTable(int x){
 		DatabaseHandle db = new DatabaseHandle();
@@ -29,7 +31,8 @@ public class DatabaseTable {
 		
 		try {
 			rs = db.stt.executeQuery("SELECT * FROM " + dbName);
-			table = new JTable(buildTableModel());
+			DefaultTableModel tableModel = buildTableModel();
+			table = new JTable(tableModel);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
