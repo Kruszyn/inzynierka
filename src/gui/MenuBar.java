@@ -27,8 +27,8 @@ public class MenuBar{
 		menuItem1.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
 			frame.getContentPane().setLayout(new MigLayout("", "[][]", "[][][]"));
-			
 			frame.getContentPane().add(new PublicationFrame().getContentPane(), "cell 0 0");
+			frame.getContentPane().add(new EditFrame().getContentPane(), "cell 1 0");
 			frame.getContentPane().add(new JScrollPane(new DatabaseTable(1).getTable()), "cell 0 1");
 			frame.getContentPane().add(new JScrollPane(new DatabaseTable(0).getTable()), "cell 0 2");
 			frame.getContentPane().add(new EditCitationFrame().getContentPane(), "cell 1 1");	

@@ -14,12 +14,13 @@ public class DatabaseHandle {
     public Statement stt = null;
 	
 	public DatabaseHandle(){	
-		this.url = "jdbc:mysql://localhost:3306/inzynierka";
+		this.url = "jdbc:mysql://localhost:3306/inzynierka?useUnicode=true&characterEncoding=UTF-8";
 	
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 	        Connection con = DriverManager.getConnection(url, "root", "");
 	        this.stt = con.createStatement();
+	       // stt.execute("SET NAMES 'UTF8'");
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 			e.printStackTrace(); 
 			throw new RuntimeException(e);
@@ -102,6 +103,32 @@ public class DatabaseHandle {
 		
 		
 		String sql = "UPDATE citations SET artcytowany='" + artCited + "', artcytujacy='" + artQuot + "', gs='" + gs + "', wos='" + wos + "' WHERE id ='" + id + "'";
+		try {
+			stt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+	}
+	
+	public void editPublication(String id, String authors, String title, String place, String pdate, String pages, String category){
+		
+		
+		String sql = "UPDATE publications SET authors='" + authors + "', title='" + title + "', place='" + place + "', Pdate='" + pdate + "', pages='" + pages + "', category='"  + category +"' WHERE id ='" + id + "'";
+		try {
+			stt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+	}
+	
+	public void editArticle(String id, String authors, String title, String place, String pdate, String pages, String category){
+		
+		
+		String sql = "UPDATE articles SET authors='" + authors + "', title='" + title + "', place='" + place + "', Pdate='" + pdate + "', pages='" + pages + "', category='"  +category +"' WHERE id ='" + id + "'";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {

@@ -92,7 +92,7 @@ public class AddFrame extends JFrame{
 		});
 		contentPane.add(addPublicationButton, "flowx,cell 1 7,alignx center");
 		
-		addArticleButton = new JButton("Dodaj artykul");
+		addArticleButton = new JButton("Dodaj artyku³");
 		addArticleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			

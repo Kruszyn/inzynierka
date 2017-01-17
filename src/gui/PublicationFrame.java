@@ -1,13 +1,10 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.DefaultRowSorter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -18,18 +15,16 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JTable;
 
 public class PublicationFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7254767999622115205L;
+	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
@@ -39,21 +34,15 @@ public class PublicationFrame extends JFrame {
 	 */
 	public PublicationFrame() {
 		contentPane = new JPanel();
-		
-		
-		
-		
-		
-		
 
 		contentPane.setLayout(new MigLayout("", "[][][][][][][grow]", "[grow][]"));
 		
 		table = new DatabaseTable(5).getTable();
-		TableRowSorter rowSorter = new TableRowSorter<TableModel>(table.getModel());
+		TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>(table.getModel());
 		table.setRowSorter(rowSorter);
 		contentPane.add(new JScrollPane(table), "cell 0 0 7 1,alignx center,growy");
 		
-		JLabel lblNewLabel = new JLabel("Wyszukaj publikacje autora:");
+		JLabel lblNewLabel = new JLabel("Wyszukaj publikacje:");
 		contentPane.add(lblNewLabel, "cell 0 1 6 1,alignx center");
 		
 		
@@ -98,18 +87,6 @@ public class PublicationFrame extends JFrame {
 		
 		setContentPane(contentPane);
 		
-	}
-
-	private void newFilter() {
-		DefaultRowSorter<DefaultTableModel,Integer> sorter = new TableRowSorter<DefaultTableModel>();
-		if (textField.getText().length() == 0) {
-	        sorter.setRowFilter(null);
-	        table.setRowSorter(sorter);
-	     } else {
-	  	
-	    	sorter.setRowFilter(RowFilter.regexFilter(textField.getText()));
-	    	table.setRowSorter(sorter);
-	     }
 	}
 
 }
