@@ -11,39 +11,31 @@ import com.mysql.jdbc.ResultSetMetaData;
 
 import db.DatabaseHandle;
 
-public class DatabaseTable{
-
-	private ResultSet rs;
-	private JTable table; 
+public class PublicationTable  {
 	
-	public DatabaseTable(int x){
+	private ResultSet rs;
+	private JTable table;
+
+	public PublicationTable() {
 		DatabaseHandle db = new DatabaseHandle();
-		String dbName = " ";
-		
-		if(x==0){
-			dbName="articles";
-		}else if(x==1){
-			dbName="citations";
-		}
 		
 		try {
-			rs = db.stt.executeQuery("SELECT * FROM " + dbName);
+			this.rs = db.stt.executeQuery("SELECT * FROM publications");
 			DefaultTableModel tableModel = buildTableModel();
 			table = new JTable(tableModel);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	private DefaultTableModel buildTableModel() throws SQLException {
 		
-	    ResultSetMetaData metaData = (ResultSetMetaData) this.rs.getMetaData();
+	    ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData();
 
 	    
 	    Vector<String> columnNames = new Vector<String>();
 	    int columnCount = metaData.getColumnCount();
-	    for (int column = 1; column <= columnCount; column++) {
+	    for (int column = 1; column <= (columnCount-2); column++) {
 	        columnNames.add(metaData.getColumnName(column));
 	    }
 
@@ -51,7 +43,7 @@ public class DatabaseTable{
 	    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 	    while (rs.next()) {
 	        Vector<Object> vector = new Vector<Object>();
-	        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+	        for (int columnIndex = 1; columnIndex <= (columnCount-2); columnIndex++) {
 	            vector.add(rs.getObject(columnIndex));
 	        }
 	        data.add(vector);
@@ -60,10 +52,8 @@ public class DatabaseTable{
 	    return new DefaultTableModel(data, columnNames);
 	}
 
-	
 	public JTable getTable() {
 		return table;
 	}
-
 
 }

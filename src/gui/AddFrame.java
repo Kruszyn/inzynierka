@@ -71,19 +71,11 @@ public class AddFrame extends JFrame{
 		contentPane.add(pagesField, "cell 1 5,growx");
 		pagesField.setColumns(10);
 		
-		JLabel categoryLabel = new JLabel("Kategoria:");
-		contentPane.add(categoryLabel, "cell 0 6,alignx left");
-		
-		categoryField = new JTextField();
-		contentPane.add(categoryField, "cell 1 6,growx");
-		categoryField.setColumns(10);
-		
 		addPublicationButton = new JButton("Dodaj publikacjê");
 		addPublicationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//	public void addArticle(String title, String authors, String place, String Pdate, String pages, int category){
 				DatabaseHandle db = new DatabaseHandle();
-				db.addPublication(titleField.getText(), authorsField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText(), categoryField.getText());
+				db.addPublication(titleField.getText(), authorsField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText());
 				//TODO sprawdzenie poprawnoœci dodania
 				clearFields();
 				JOptionPane.showMessageDialog(new JFrame(),"Dodano publikacjê.");
@@ -97,7 +89,7 @@ public class AddFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 			
 				DatabaseHandle db = new DatabaseHandle();
-				db.addArticle(titleField.getText(), authorsField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText(), categoryField.getText());
+				db.addArticle(titleField.getText(), authorsField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText());
 				//TODO sprawdzenie poprawnoœci dodania
 				clearFields();
 				JOptionPane.showMessageDialog(new JFrame(),"Dodano artyku³.");
@@ -119,7 +111,6 @@ public class AddFrame extends JFrame{
 		placeField.setText("");
 		pdateField.setText("");
 		pagesField.setText("");
-		categoryField.setText("");
 	}
 	
 }

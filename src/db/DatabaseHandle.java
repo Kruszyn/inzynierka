@@ -27,10 +27,10 @@ public class DatabaseHandle {
 		}
 	}
 	
-	public void addArticle(String title, String authors, String place, String Pdate, String pages, String category){
+	public void addArticle(String title, String authors, String place, String Pdate, String pages){
 		 
-		String sql = "INSERT INTO articles(authors, title, place, Pdate, pages, category) Values( "
-					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages + "', '" + category +"')";
+		String sql = "INSERT INTO articles(authors, title, place, Pdate, pages) Values( "
+					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages + "')";
 		
 		try {
 			stt.executeUpdate(sql);
@@ -40,10 +40,10 @@ public class DatabaseHandle {
 		}
 	}
 	
-	public void addPublication(String title, String authors, String place, String Pdate, String pages, String category){
+	public void addPublication(String title, String authors, String place, String Pdate, String pages){
 		
-		String sql = "INSERT INTO publications(authors, title, place, Pdate, pages, category) Values( "
-					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages  + "', '" + category + "')";
+		String sql = "INSERT INTO publications(authors, title, place, Pdate, pages) Values( "
+					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages  + "')";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -54,7 +54,7 @@ public class DatabaseHandle {
 	
 	public void addCitation(String artCited, String artQuot, String gs, String wos){
 	
-		String sql = "INSERT INTO citations(artcytowany, artcytujacy, gs, wos) Values( "
+		String sql = "INSERT INTO citations(artcytowany, artcytujacy, GoogleSchoolar, WebOfScience) Values( "
 				+ "'" + artCited + "', '" + artQuot + "', '" + gs + "', '" + wos + "')";
 		try {
 			stt.executeUpdate(sql);
@@ -102,7 +102,8 @@ public class DatabaseHandle {
 	public void editCitation(String id, String artCited, String artQuot, String gs, String wos){
 		
 		
-		String sql = "UPDATE citations SET artcytowany='" + artCited + "', artcytujacy='" + artQuot + "', gs='" + gs + "', wos='" + wos + "' WHERE id ='" + id + "'";
+		String sql = "UPDATE citations SET artcytowany='" + artCited + "', artcytujacy='" + artQuot + "', GoogleSchoolar='"
+				+ gs + "', WebOfScience='" + wos + "' WHERE id ='" + id + "'";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -112,10 +113,11 @@ public class DatabaseHandle {
 		
 	}
 	
-	public void editPublication(String id, String authors, String title, String place, String pdate, String pages, String category){
+	public void editPublication(String id, String authors, String title, String place, String pdate, String pages){
 		
 		
-		String sql = "UPDATE publications SET authors='" + authors + "', title='" + title + "', place='" + place + "', Pdate='" + pdate + "', pages='" + pages + "', category='"  + category +"' WHERE id ='" + id + "'";
+		String sql = "UPDATE publications SET authors='" + authors + "', title='" + title + "', place='" + place + "',"
+				+ " Pdate='" + pdate + "', pages='" + pages + "' WHERE id ='" + id + "'";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -125,10 +127,11 @@ public class DatabaseHandle {
 		
 	}
 	
-	public void editArticle(String id, String authors, String title, String place, String pdate, String pages, String category){
+	public void editArticle(String id, String authors, String title, String place, String pdate, String pages){
 		
 		
-		String sql = "UPDATE articles SET authors='" + authors + "', title='" + title + "', place='" + place + "', Pdate='" + pdate + "', pages='" + pages + "', category='"  +category +"' WHERE id ='" + id + "'";
+		String sql = "UPDATE articles SET authors='" + authors + "', title='" + title + "', place='" + place + "', "
+				+ "Pdate='"+ pdate + "', pages='" + pages + "' WHERE id ='" + id + "'";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {

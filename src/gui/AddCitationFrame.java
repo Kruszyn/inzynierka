@@ -100,7 +100,7 @@ public class AddCitationFrame extends JFrame {
 		try {
 			if(rs.next())x = rs.getLong(1);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block ustawiæ x na 0 ?
 			e.printStackTrace();
 		}
 

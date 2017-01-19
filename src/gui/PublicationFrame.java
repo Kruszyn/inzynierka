@@ -1,13 +1,11 @@
 package gui;
 
 
-import javax.swing.DefaultRowSorter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -28,6 +26,7 @@ public class PublicationFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
+	private JPanel panel;
 
 	/**
 	 * Create the frame.
@@ -35,12 +34,17 @@ public class PublicationFrame extends JFrame {
 	public PublicationFrame() {
 		contentPane = new JPanel();
 
-		contentPane.setLayout(new MigLayout("", "[][][][][][][grow]", "[grow][]"));
+		contentPane.setLayout(new MigLayout("", "[][][][][][][grow][grow]", "[grow][]"));
 		
-		table = new DatabaseTable(5).getTable();
+		table = new PublicationTable().getTable();
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>(table.getModel());
 		table.setRowSorter(rowSorter);
 		contentPane.add(new JScrollPane(table), "cell 0 0 7 1,alignx center,growy");
+		
+		panel = new JPanel();
+		panel.add(new EditPublication().getContentPane());
+		contentPane.add(panel, "cell 7 0 1 2,grow");
+		
 		
 		JLabel lblNewLabel = new JLabel("Wyszukaj publikacje:");
 		contentPane.add(lblNewLabel, "cell 0 1 6 1,alignx center");
