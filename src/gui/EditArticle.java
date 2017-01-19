@@ -51,7 +51,7 @@ public class EditArticle extends EditFrame {
 				}
 			}
 		});
-		getContentPane().add(spinnerIdArt, "cell 1 1,alignx right");
+		getContentPane().add(spinnerIdArt, "flowx,cell 1 1");
 		
 		JButton editArticleButton = new JButton("Edytuj artyku³");
 		editArticleButton.addActionListener(new ActionListener() {

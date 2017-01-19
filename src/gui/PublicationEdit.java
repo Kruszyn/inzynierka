@@ -15,12 +15,12 @@ import javax.swing.event.ChangeListener;
 
 import db.DatabaseHandle;
 
-public class EditPublication extends EditFrame {
+public class PublicationEdit extends EditFrame {
 
 
 	private static final long serialVersionUID = -3454779540377722098L;
-
-	public EditPublication() {
+	private JSpinner spinnerId;
+	public PublicationEdit() {
 
 		super();
 		getContentPane().add(new JLabel("Edytowanie publikacji"), "cell 0 0 2 1,alignx center");
@@ -28,7 +28,8 @@ public class EditPublication extends EditFrame {
 		JLabel lblNewLabel = new JLabel("Wybierz ID edytowanej publikacji:");
 		getContentPane().add(lblNewLabel, "cell 0 1");
 		
-		JSpinner spinnerId = new JSpinner(createSpinnerModel("publications"));
+		spinnerId = new JSpinner(createSpinnerModel("publications"));
+		initValues();
 		spinnerId.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				DatabaseHandle db = new DatabaseHandle();
@@ -43,6 +44,7 @@ public class EditPublication extends EditFrame {
 						pagesField.setText(rs.getObject(6).toString());
 					}
 					else{
+						clearFields();
 						JOptionPane.showMessageDialog(new JFrame(),"Nie ma publikacji o takim ID w bazie danych.");
 					}
 				} catch (SQLException e1) {
@@ -50,6 +52,8 @@ public class EditPublication extends EditFrame {
 					e1.printStackTrace();
 				}
 			}
+
+
 		});
 		getContentPane().add(spinnerId, "flowx,cell 1 1");
 		
@@ -68,5 +72,42 @@ public class EditPublication extends EditFrame {
 		getContentPane().add(editPublicationButton, "flowx,cell 1 8,alignx center");
 		
 	}
+	
+	private void initValues() {
+		DatabaseHandle db = new DatabaseHandle();
+		ResultSet rs = null;
+		Object min = null;
+		try {
+			rs = db.stt.executeQuery("SELECT MIN(id) FROM publications");
+			if(rs.next()){
+				min = rs.getObject(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		try {
+			rs = db.stt.executeQuery("SELECT * FROM publications WHERE id=" + min.toString());
+			if(rs.next()){
+				authorsField.setText(rs.getObject(2).toString());
+				titleField.setText(rs.getObject(3).toString());
+				placeField.setText(rs.getObject(4).toString());
+				pdateField.setText(rs.getObject(5).toString());
+				pagesField.setText(rs.getObject(6).toString());
+			}
+			else{
+				JOptionPane.showMessageDialog(new JFrame(),"Nie ma publikacji o takim ID w bazie danych.");
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
+	public JSpinner getSpinnerId() {
+		return spinnerId;
+	}
+
 
 }

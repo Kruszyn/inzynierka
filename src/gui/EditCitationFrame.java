@@ -32,14 +32,18 @@ public class EditCitationFrame extends JFrame {
 	private Choice choice;
 	private Choice choice2;
 	private JButton editBtn;
+	private JLabel lblNewLabel;
 	/**
 	 * Create the frame.
 	 */
 	public EditCitationFrame() {
 		contentPane = new JPanel();
-		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][]"));
+		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][]"));
 		
-		contentPane.add(new JLabel("Edycja cytowania o ID:"), "cell 0 0,alignx center");
+		lblNewLabel = new JLabel("Edycja cytowania");
+		contentPane.add(lblNewLabel, "cell 0 0 2 1,alignx center");
+		
+		contentPane.add(new JLabel("Wybierz ID cytowania:"), "cell 0 1,alignx center");
 		
 		spinnerId = new JSpinner(createSpinerModel("citations"));
 		spinnerId.addChangeListener(new ChangeListener() {
@@ -64,17 +68,17 @@ public class EditCitationFrame extends JFrame {
 			}
 			
 		});
-		contentPane.add(spinnerId, "flowx,cell 1 0");
+		contentPane.add(spinnerId, "flowx,cell 1 1");
 	
 		
-		contentPane.add(new JLabel("ID artyku³u cytowanego"), "cell 0 1");	
+		contentPane.add(new JLabel("ID artyku³u cytowanego"), "cell 0 2");	
 		spinnerCited = new JSpinner(createSpinerModel("publications"));
-		contentPane.add(spinnerCited, "cell 1 1,alignx left");
+		contentPane.add(spinnerCited, "cell 1 2,alignx left");
 		
 		
-		contentPane.add(new JLabel("ID artyku³u cytuj¹cego"), "cell 0 2");	
+		contentPane.add(new JLabel("ID artyku³u cytuj¹cego"), "cell 0 3");	
 		spinnerQuot = new JSpinner(createSpinerModel("articles"));
-		contentPane.add(spinnerQuot, "cell 1 2,alignx left");
+		contentPane.add(spinnerQuot, "cell 1 3,alignx left");
 		
 		choice = new Choice();
 		choice.add("brak danych");
@@ -82,8 +86,8 @@ public class EditCitationFrame extends JFrame {
 		choice.add("nie uznane");
 		choice.add("zg³oszone");
 		
-		contentPane.add(new JLabel("Google schoolar"), "cell 0 3");		
-		contentPane.add(choice, "cell 1 3,grow");
+		contentPane.add(new JLabel("Google schoolar"), "cell 0 4");		
+		contentPane.add(choice, "cell 1 4,grow");
 		
 		choice2 = new Choice();
 		choice2.add("brak danych");
@@ -91,8 +95,8 @@ public class EditCitationFrame extends JFrame {
 		choice2.add("nie uznane");
 		choice2.add("zg³oszone");
 		
-		contentPane.add(new JLabel("Baza dancyh 2"), "cell 0 4");
-		contentPane.add(choice2, "cell 1 4,grow");
+		contentPane.add(new JLabel("Baza dancyh 2"), "cell 0 5");
+		contentPane.add(choice2, "cell 1 5,grow");
 		
 
 		
@@ -106,7 +110,7 @@ public class EditCitationFrame extends JFrame {
 
 			}
 		});
-		contentPane.add(editBtn, "cell 0 5 2 1,alignx center");
+		contentPane.add(editBtn, "cell 0 6 2 1,alignx center");
 
 		setContentPane(contentPane);
 }

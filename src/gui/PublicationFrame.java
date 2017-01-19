@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -26,8 +28,7 @@ public class PublicationFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
-	private JPanel panel;
-
+	private PublicationEdit panel;
 	/**
 	 * Create the frame.
 	 */
@@ -36,14 +37,26 @@ public class PublicationFrame extends JFrame {
 
 		contentPane.setLayout(new MigLayout("", "[][][][][][][grow][grow]", "[grow][]"));
 		
+		
+		panel = new PublicationEdit();
+		contentPane.add(panel.getContentPane(), "cell 7 0 1 2,grow");
+		
+		
 		table = new PublicationTable().getTable();
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>(table.getModel());
 		table.setRowSorter(rowSorter);
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			@Override
+			public void valueChanged(ListSelectionEvent event) {
+				Object i =  table.getValueAt(table.getSelectedRow(), 0);
+				panel.getSpinnerId().setValue(i);
+	        }
+	    });
+		
 		contentPane.add(new JScrollPane(table), "cell 0 0 7 1,alignx center,growy");
 		
-		panel = new JPanel();
-		panel.add(new EditPublication().getContentPane());
-		contentPane.add(panel, "cell 7 0 1 2,grow");
+
+
 		
 		
 		JLabel lblNewLabel = new JLabel("Wyszukaj publikacje:");

@@ -32,10 +32,7 @@ public class EditFrame extends JFrame {
 
 		contentPane = new JPanel();
 		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][]"));
-		
-		JLabel lblNewLabel_1 = new JLabel("lub artyku³u:");
-		contentPane.add(lblNewLabel_1, "cell 1 1");
-		
+			
 		JLabel authorsLabel = new JLabel("Autor/Autorzy:");
 		contentPane.add(authorsLabel, "cell 0 2,alignx left");
 		
@@ -78,8 +75,7 @@ public class EditFrame extends JFrame {
 
 	}
 	
-	
-	
+
 	protected SpinnerModel createSpinnerModel(String tableName) {
 		
 		DatabaseHandle db = new DatabaseHandle();
@@ -107,5 +103,13 @@ public class EditFrame extends JFrame {
 		sm = new SpinnerNumberModel(1, 1, x, 1);
 		
 		return sm;
+	}
+	
+	public void clearFields(){
+		authorsField.setText("");
+		titleField.setText("");
+		placeField.setText("");
+		pdateField.setText("");
+		pagesField.setText("");
 	}
 }
