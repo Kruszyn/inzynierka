@@ -113,11 +113,11 @@ public class DatabaseHandle {
 		
 	}
 	
-	public void editPublication(String id, String authors, String title, String place, String pdate, String pages){
+	public void editPublication(String id, String authors, String title, String place, String pdate, String pages, String gs, String wos){
 		
 		
 		String sql = "UPDATE publications SET authors='" + authors + "', title='" + title + "', place='" + place + "',"
-				+ " Pdate='" + pdate + "', pages='" + pages + "' WHERE id ='" + id + "'";
+				+ " Pdate='" + pdate + "', pages='" + pages + "', google_schoolar=" + gs + ", web_science=" + wos + " WHERE id ='" + id + "'";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {

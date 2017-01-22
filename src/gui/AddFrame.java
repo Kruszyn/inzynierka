@@ -32,7 +32,7 @@ public class AddFrame extends JFrame{
 	public AddFrame() {
 
 		contentPane = new JPanel();
-		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][]"));
+		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));
 		
 		contentPane.add(new JLabel("Dodawanie publikacji/artyku\u0142u"), "cell 0 0 2 1,alignx center");
 
@@ -82,7 +82,7 @@ public class AddFrame extends JFrame{
 
 			}
 		});
-		contentPane.add(addPublicationButton, "flowx,cell 1 7,alignx center");
+		contentPane.add(addPublicationButton, "flowx,cell 1 6,alignx center");
 		
 		addArticleButton = new JButton("Dodaj artyku³");
 		addArticleButton.addActionListener(new ActionListener() {
@@ -96,7 +96,7 @@ public class AddFrame extends JFrame{
 
 			}
 		});
-		contentPane.add(addArticleButton, "cell 1 7,alignx leading");
+		contentPane.add(addArticleButton, "cell 1 6,alignx leading");
 
 		
 	}

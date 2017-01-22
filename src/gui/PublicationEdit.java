@@ -14,12 +14,16 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import db.DatabaseHandle;
+import javax.swing.JCheckBox;
 
 public class PublicationEdit extends EditFrame {
 
 
 	private static final long serialVersionUID = -3454779540377722098L;
 	private JSpinner spinnerId;
+	private JCheckBox chckbxGoogle;
+	private JCheckBox chckbxScience;
+	
 	public PublicationEdit() {
 
 		super();
@@ -42,6 +46,9 @@ public class PublicationEdit extends EditFrame {
 						placeField.setText(rs.getObject(4).toString());
 						pdateField.setText(rs.getObject(5).toString());
 						pagesField.setText(rs.getObject(6).toString());
+						chckbxGoogle.setSelected((boolean) rs.getObject(7));
+						chckbxScience.setSelected((boolean) rs.getObject(8));
+						
 					}
 					else{
 						clearFields();
@@ -57,19 +64,33 @@ public class PublicationEdit extends EditFrame {
 		});
 		getContentPane().add(spinnerId, "flowx,cell 1 1");
 		
+		JLabel lblNewLabel_1 = new JLabel("Obecnoœæ publikacji w bazach danych:");
+		getContentPane().add(lblNewLabel_1, "cell 0 7");
+		
 		JButton editPublicationButton = new JButton("Edytuj publikacjê");
 		editPublicationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//	public void addArticle(String title, String authors, String place, String Pdate, String pages, int category){
+			
 				DatabaseHandle db = new DatabaseHandle();
-				db.editPublication(spinnerId.getValue().toString(), authorsField.getText(), titleField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText());
+				System.out.print(String.valueOf(chckbxGoogle.isSelected()));
+
+				db.editPublication(spinnerId.getValue().toString(), authorsField.getText(), titleField.getText(),
+						placeField.getText(), pdateField.getText(), pagesField.getText(), String.valueOf(chckbxGoogle.isSelected()), String.valueOf(chckbxScience.isSelected()));
 				//TODO sprawdzenie poprawnoœci dodania
 
 				JOptionPane.showMessageDialog(new JFrame(),"Edytowano publikacjê.");
 
 			}
 		});
-		getContentPane().add(editPublicationButton, "flowx,cell 1 8,alignx center");
+		
+		chckbxGoogle = new JCheckBox("Google Schoolar");
+		getContentPane().add(chckbxGoogle, "cell 1 7");
+		
+		chckbxScience = new JCheckBox("Web of Science");
+		getContentPane().add(chckbxScience, "cell 1 9");
+		
+
+		getContentPane().add(editPublicationButton, "flowx,cell 1 10,alignx center");
 		
 	}
 	

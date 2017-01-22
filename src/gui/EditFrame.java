@@ -31,7 +31,7 @@ public class EditFrame extends JFrame {
 	public EditFrame() {
 
 		contentPane = new JPanel();
-		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][]"));
+		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][][]"));
 			
 		JLabel authorsLabel = new JLabel("Autor/Autorzy:");
 		contentPane.add(authorsLabel, "cell 0 2,alignx left");

@@ -37,8 +37,7 @@ public class MainWindow {
 	private void initialize() {
 
 		frame = new JFrame();
-
-		frame.setBounds(0, 0, 750, 500);
+		frame.setBounds(0, 0, 1200, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		frame.setJMenuBar(new MenuBar(frame).getBar());
