@@ -1,4 +1,4 @@
-package db;
+package com;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -54,7 +54,7 @@ public class DatabaseHandle {
 	
 	public void addCitation(String artCited, String artQuot, String gs, String wos){
 	
-		String sql = "INSERT INTO citations(artcytowany, artcytujacy, GoogleSchoolar, WebOfScience) Values( "
+		String sql = "INSERT INTO citations(artcytowany, artcytujacy, google_schoolar, web_science) Values( "
 				+ "'" + artCited + "', '" + artQuot + "', '" + gs + "', '" + wos + "')";
 		try {
 			stt.executeUpdate(sql);

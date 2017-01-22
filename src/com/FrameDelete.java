@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 
 import java.sql.ResultSet;
@@ -12,13 +12,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-
-import db.DatabaseHandle;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class DeleteFrame extends JFrame {
+public class FrameDelete extends JFrame {
 
 	/**
 	 * 
@@ -26,7 +24,7 @@ public class DeleteFrame extends JFrame {
 	private static final long serialVersionUID = -6566181059536485509L;
 	private JPanel contentPane;
 
-	public DeleteFrame() {
+	public FrameDelete() {
 		
 		contentPane = new JPanel();
 		

@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 
 import javax.swing.JFrame;
@@ -28,18 +28,18 @@ public class PublicationFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
-	private PublicationEdit panel;
+	private PublicationEdit editFrame;
 	/**
 	 * Create the frame.
 	 */
 	public PublicationFrame() {
 		contentPane = new JPanel();
 
-		contentPane.setLayout(new MigLayout("", "[][][][][][][grow][grow]", "[grow][]"));
+		contentPane.setLayout(new MigLayout("", "[][]", "[][]"));
 		
 		
-		panel = new PublicationEdit();
-		contentPane.add(panel.getContentPane(), "cell 7 0 1 2,grow");
+		editFrame = new PublicationEdit();
+		contentPane.add(editFrame.getContentPane(), "cell 1 0");
 		
 		
 		table = new PublicationTable().getTable();
@@ -49,18 +49,18 @@ public class PublicationFrame extends JFrame {
 			@Override
 			public void valueChanged(ListSelectionEvent event) {
 				Object i =  table.getValueAt(table.getSelectedRow(), 0);
-				panel.getSpinnerId().setValue(i);
+				editFrame.getSpinnerId().setValue(i);
 	        }
 	    });
 		
-		contentPane.add(new JScrollPane(table), "cell 0 0 7 1,alignx center,growy");
+		contentPane.add(new JScrollPane(table), "cell 0 0");
 		
 
 
 		
 		
 		JLabel lblNewLabel = new JLabel("Wyszukaj publikacje:");
-		contentPane.add(lblNewLabel, "cell 0 1 6 1,alignx center");
+		contentPane.add(lblNewLabel, "cell 0 1,alignx left");
 		
 		
 
@@ -99,7 +99,7 @@ public class PublicationFrame extends JFrame {
 
         });
     
-		contentPane.add(textField, "cell 6 1,growx");
+		contentPane.add(textField, "cell 0 1,growx");
 		textField.setColumns(10);
 		
 		setContentPane(contentPane);

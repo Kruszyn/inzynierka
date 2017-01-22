@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 import java.awt.Choice;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import db.DatabaseHandle;
+
 import net.miginfocom.swing.MigLayout;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -19,7 +19,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class EditCitationFrame extends JFrame {
+public class CitationEdit extends JFrame {
 
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class EditCitationFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditCitationFrame() {
+	public CitationEdit() {
 		contentPane = new JPanel();
 		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][]"));
 		
@@ -150,5 +150,9 @@ public class EditCitationFrame extends JFrame {
 	
 	public JButton getEditBtn(){
 		return editBtn;
+	}
+
+	public JSpinner getSpinnerId() {
+		return spinnerId;
 	}
 }

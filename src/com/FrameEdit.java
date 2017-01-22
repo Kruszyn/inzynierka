@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,12 +10,11 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
-import db.DatabaseHandle;
 import net.miginfocom.swing.MigLayout;
 
 
 //TODO Spinner wywala gdy pusta baza danych
-public class EditFrame extends JFrame {
+public class FrameEdit extends JFrame {
 
 	/**
 	 * 
@@ -28,7 +27,7 @@ public class EditFrame extends JFrame {
 	protected JTextField pdateField;
 	protected JTextField pagesField;
 
-	public EditFrame() {
+	public FrameEdit() {
 
 		contentPane = new JPanel();
 		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][][]"));

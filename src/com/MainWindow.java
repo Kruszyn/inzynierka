@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 import java.awt.EventQueue;
 
@@ -37,11 +37,9 @@ public class MainWindow {
 	private void initialize() {
 
 		frame = new JFrame();
-		frame.setBounds(0, 0, 1200, 700);
+		frame.setBounds(0, 0, 1000, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		frame.setJMenuBar(new MenuBar(frame).getBar());
-		//frame.getContentPane().add(new JScrollPane(new DatabaseTable(5).getTable()));
 	}
 
 

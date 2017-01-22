@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,9 +13,7 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import db.DatabaseHandle;
-
-public class EditArticle extends EditFrame {
+public class EditArticle extends FrameEdit {
 
 
 	private static final long serialVersionUID = -5488964758369532955L;

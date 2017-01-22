@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,36 +9,27 @@ import javax.swing.table.DefaultTableModel;
 
 import com.mysql.jdbc.ResultSetMetaData;
 
-import db.DatabaseHandle;
-
-public class DatabaseTable{
+public class CitationTable {
 
 	private ResultSet rs;
-	private JTable table; 
-	
-	public DatabaseTable(int x){
+	private JTable table;
+
+	public CitationTable() {
 		DatabaseHandle db = new DatabaseHandle();
-		String dbName = " ";
-		
-		if(x==0){
-			dbName="articles";
-		}else if(x==1){
-			dbName="citations";
-		}
 		
 		try {
-			rs = db.stt.executeQuery("SELECT * FROM " + dbName);
+			this.rs = db.stt.executeQuery("SELECT * FROM citations");
 			DefaultTableModel tableModel = buildTableModel();
 			table = new JTable(tableModel);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 	
+
 	private DefaultTableModel buildTableModel() throws SQLException {
 		
-	    ResultSetMetaData metaData = (ResultSetMetaData) this.rs.getMetaData();
+	    ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData();
 
 	    
 	    Vector<String> columnNames = new Vector<String>();
@@ -60,10 +51,8 @@ public class DatabaseTable{
 	    return new DefaultTableModel(data, columnNames);
 	}
 
-	
 	public JTable getTable() {
 		return table;
 	}
-
 
 }

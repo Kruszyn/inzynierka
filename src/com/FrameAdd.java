@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 //TODO funkcja String[] getValues() zwracaj¹ca w tablicy wszystkie wartoœci z pól
 
@@ -7,16 +7,13 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-import db.DatabaseHandle;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AddFrame extends JFrame{
+public class FrameAdd extends JFrame{
 
 	private static final long serialVersionUID = -8209693979309819481L;
 	private JPanel contentPane;
@@ -25,11 +22,10 @@ public class AddFrame extends JFrame{
 	private JTextField placeField;
 	private JTextField pdateField;
 	private JTextField pagesField;
-	private JTextField categoryField;
 	private JButton addArticleButton;
 	private JButton addPublicationButton;
 
-	public AddFrame() {
+	public FrameAdd() {
 
 		contentPane = new JPanel();
 		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][]"));

@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,11 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import db.DatabaseHandle;
 import javax.swing.JCheckBox;
 
-public class PublicationEdit extends EditFrame {
+public class PublicationEdit extends FrameEdit {
 
 
 	private static final long serialVersionUID = -3454779540377722098L;
@@ -72,8 +70,6 @@ public class PublicationEdit extends EditFrame {
 			public void actionPerformed(ActionEvent e) {
 			
 				DatabaseHandle db = new DatabaseHandle();
-				System.out.print(String.valueOf(chckbxGoogle.isSelected()));
-
 				db.editPublication(spinnerId.getValue().toString(), authorsField.getText(), titleField.getText(),
 						placeField.getText(), pdateField.getText(), pagesField.getText(), String.valueOf(chckbxGoogle.isSelected()), String.valueOf(chckbxScience.isSelected()));
 				//TODO sprawdzenie poprawnoœci dodania
@@ -87,10 +83,10 @@ public class PublicationEdit extends EditFrame {
 		getContentPane().add(chckbxGoogle, "cell 1 7");
 		
 		chckbxScience = new JCheckBox("Web of Science");
-		getContentPane().add(chckbxScience, "cell 1 9");
+		getContentPane().add(chckbxScience, "cell 1 8");
 		
 
-		getContentPane().add(editPublicationButton, "flowx,cell 1 10,alignx center");
+		getContentPane().add(editPublicationButton, "flowx,cell 1 9,alignx center");
 		
 	}
 	

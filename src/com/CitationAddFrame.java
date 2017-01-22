@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 import java.awt.Choice;
 import java.awt.event.ActionEvent;
@@ -15,12 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-
-import db.DatabaseHandle;
-
 import javax.swing.JOptionPane;
 
-public class AddCitationFrame extends JFrame {
+public class CitationAddFrame extends JFrame {
 
 	/**
 	 * 
@@ -31,7 +28,7 @@ public class AddCitationFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddCitationFrame() {
+	public CitationAddFrame() {
 		contentPane = new JPanel();
 		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][]"));
 		

@@ -1,4 +1,4 @@
-package gui;
+package com;
 
 import java.awt.event.ActionEvent;
 
@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -26,12 +25,12 @@ public class MenuBar{
 		JMenuItem menuItem1 = new JMenuItem("Wyœwietl bazy danych");
 		menuItem1.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
-			frame.getContentPane().setLayout(new MigLayout("", "[][]", "[][][]"));
-			frame.getContentPane().add(new PublicationFrame().getContentPane(), "dock north");
-			frame.getContentPane().add(new EditArticle().getContentPane(), "cell 1 2");
-			frame.getContentPane().add(new JScrollPane(new DatabaseTable(1).getTable()), "cell 0 1");
-			frame.getContentPane().add(new JScrollPane(new DatabaseTable(0).getTable()), "cell 0 2");
-			frame.getContentPane().add(new EditCitationFrame().getContentPane(), "cell 1 1");	
+			frame.getContentPane().setLayout(new MigLayout("", "[]", "[][][][]"));
+			frame.getContentPane().add(new PublicationFrame().getContentPane(), "cell 0 0");
+			frame.getContentPane().add(new CitationFrame().getContentPane(), "cell 0 1");
+
+		//	frame.getContentPane().add(new EditArticle().getContentPane(), "cell 1 2");
+		//	frame.getContentPane().add(new JScrollPane(new DatabaseTable(0).getTable()), "cell 0 2");
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});
@@ -40,7 +39,7 @@ public class MenuBar{
         JMenuItem menuItem2 = new JMenuItem("Usuñ wpis z bazy danych");
 		menuItem2.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
-			frame.getContentPane().add(new DeleteFrame().getContentPane());
+			frame.getContentPane().add(new FrameDelete().getContentPane());
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});
@@ -51,7 +50,7 @@ public class MenuBar{
 		JMenuItem menuItem21 = new JMenuItem("Publikacje/Artyku³ obcy");
 		menuItem21.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
-			frame.setContentPane(new AddFrame().getContentPane());
+			frame.setContentPane(new FrameAdd().getContentPane());
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});
@@ -60,7 +59,7 @@ public class MenuBar{
 		JMenuItem menuItem22 = new JMenuItem("Cytowanie");
 		menuItem22.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
-			frame.getContentPane().add(new AddCitationFrame().getContentPane());
+			frame.getContentPane().add(new CitationAddFrame().getContentPane());
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});
