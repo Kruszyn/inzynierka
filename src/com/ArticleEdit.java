@@ -25,7 +25,21 @@ public class ArticleEdit extends FrameEdit {
 		getContentPane().add(new JLabel("Edytowanie artyku³u"), "cell 0 0 2 1,alignx center");
 		
 		JLabel lblNewLabel = new JLabel("Wybierz ID edytowanego artyku³u:");
-		getContentPane().add(lblNewLabel, "cell 0 1");
+		getContentPane().add(lblNewLabel, "flowx,cell 0 1");
+		
+		JButton editArticleButton = new JButton("Edytuj artyku³");
+		editArticleButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				DatabaseHandle db = new DatabaseHandle();
+				db.editArticle(spinnerIdArt.getValue().toString(), authorsField.getText(), titleField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText());
+				//TODO sprawdzenie poprawnoœci dodania
+
+				JOptionPane.showMessageDialog(new JFrame(),"Edytowano artyku³.");
+
+			}
+		});
+		getContentPane().add(editArticleButton, "cell 0 7,alignx leading");
 		
 		spinnerIdArt = new JSpinner(createSpinnerModel("articles"));
 		spinnerIdArt.addChangeListener(new ChangeListener() {
@@ -50,21 +64,7 @@ public class ArticleEdit extends FrameEdit {
 				}
 			}
 		});
-		getContentPane().add(spinnerIdArt, "flowx,cell 1 1");
-		
-		JButton editArticleButton = new JButton("Edytuj artyku³");
-		editArticleButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-				DatabaseHandle db = new DatabaseHandle();
-				db.editArticle(spinnerIdArt.getValue().toString(), authorsField.getText(), titleField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText());
-				//TODO sprawdzenie poprawnoœci dodania
-
-				JOptionPane.showMessageDialog(new JFrame(),"Edytowano artyku³.");
-
-			}
-		});
-		getContentPane().add(editArticleButton, "cell 1 8,alignx leading");
+		getContentPane().add(spinnerIdArt, "cell 0 1");
 
 		
 	}

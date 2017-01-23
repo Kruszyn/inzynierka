@@ -28,10 +28,16 @@ public class PublicationEdit extends FrameEdit {
 		getContentPane().add(new JLabel("Edytowanie publikacji"), "cell 0 0 2 1,alignx center");
 		
 		JLabel lblNewLabel = new JLabel("Wybierz ID edytowanej publikacji:");
-		getContentPane().add(lblNewLabel, "cell 0 1");
+		getContentPane().add(lblNewLabel, "flowx,cell 0 1,alignx left");
+		initValues();
+		
+		JLabel lblNewLabel_1 = new JLabel("Obecnoœæ publikacji w bazach danych:");
+		getContentPane().add(lblNewLabel_1, "cell 0 7 3 1");
+		
+		chckbxGoogle = new JCheckBox("Google Schoolar");
+		getContentPane().add(chckbxGoogle, "cell 0 8");
 		
 		spinnerId = new JSpinner(createSpinnerModel("publications"));
-		initValues();
 		spinnerId.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				DatabaseHandle db = new DatabaseHandle();
@@ -60,10 +66,7 @@ public class PublicationEdit extends FrameEdit {
 
 
 		});
-		getContentPane().add(spinnerId, "flowx,cell 1 1");
-		
-		JLabel lblNewLabel_1 = new JLabel("Obecnoœæ publikacji w bazach danych:");
-		getContentPane().add(lblNewLabel_1, "cell 0 7");
+		getContentPane().add(spinnerId, "cell 0 1,alignx left");
 		
 		JButton editPublicationButton = new JButton("Edytuj publikacjê");
 		editPublicationButton.addActionListener(new ActionListener() {
@@ -79,14 +82,11 @@ public class PublicationEdit extends FrameEdit {
 			}
 		});
 		
-		chckbxGoogle = new JCheckBox("Google Schoolar");
-		getContentPane().add(chckbxGoogle, "cell 1 7");
-		
 		chckbxScience = new JCheckBox("Web of Science");
-		getContentPane().add(chckbxScience, "cell 1 8");
+		getContentPane().add(chckbxScience, "cell 0 9");
 		
 
-		getContentPane().add(editPublicationButton, "flowx,cell 1 9,alignx center");
+		getContentPane().add(editPublicationButton, "flowx,cell 0 10,alignx center");
 		
 	}
 	

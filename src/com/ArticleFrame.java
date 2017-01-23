@@ -126,16 +126,7 @@ public class ArticleFrame extends JFrame {
             }
 
         });
-		JButton button = new JButton("odswiez");
-		contentPane.add(button, "cell 0 3,growx");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					
-				table.getSelectionModel().clearSelection();
 
-			}
-		});
-    
 		contentPane.add(textField, "cell 0 1,growx");
 		textField.setColumns(10);
 		

@@ -30,46 +30,46 @@ public class FrameEdit extends JFrame {
 	public FrameEdit() {
 
 		contentPane = new JPanel();
-		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][][]"));
-			
-		JLabel authorsLabel = new JLabel("Autor/Autorzy:");
-		contentPane.add(authorsLabel, "cell 0 2,alignx left");
+		contentPane.setLayout(new MigLayout("", "[396.00][]", "[][][][][][][][][][][][]"));
 		
-		authorsField = new JTextField();
-		contentPane.add(authorsField, "cell 1 2,growx");
-		authorsField.setColumns(10);
+		JLabel authorsLabel = new JLabel("Autor/Autorzy:");
+		contentPane.add(authorsLabel, "flowx,cell 0 2,alignx left");
 		
 		JLabel titleLabel = new JLabel("Tytu\u0142:");
-		contentPane.add(titleLabel, "cell 0 3,alignx left");
-		
-		titleField = new JTextField();
-		contentPane.add(titleField, "cell 1 3,growx");
-		titleField.setColumns(10);
+		contentPane.add(titleLabel, "flowx,cell 0 3,alignx left");
 		
 		JLabel placeLabel = new JLabel("Miejsce:");
-		contentPane.add(placeLabel, "cell 0 4,alignx left");
-		
-		placeField = new JTextField();
-		contentPane.add(placeField, "cell 1 4,growx");
-		placeField.setColumns(10);
+		contentPane.add(placeLabel, "flowx,cell 0 4,alignx left");
 		
 		JLabel pdateLabel = new JLabel("Data:");
-		contentPane.add(pdateLabel, "cell 0 5,alignx left");
-		
-		pdateField = new JTextField();
-		contentPane.add(pdateField, "cell 1 5,growx");
-		pdateField.setColumns(10);
-		
-		JLabel pagesLabel = new JLabel("Strony:");
-		contentPane.add(pagesLabel, "cell 0 6,alignx left");
-		
-		pagesField = new JTextField();
-		contentPane.add(pagesField, "cell 1 6,growx");
-		pagesField.setColumns(10);
+		contentPane.add(pdateLabel, "flowx,cell 0 5,alignx left");
 		
 
 
 		setContentPane(contentPane);
+		
+		JLabel pagesLabel = new JLabel("Strony:");
+		contentPane.add(pagesLabel, "flowx,cell 0 6,alignx left");
+		
+		placeField = new JTextField();
+		contentPane.add(placeField, "cell 0 4,growx");
+		placeField.setColumns(10);
+		
+		pdateField = new JTextField();
+		contentPane.add(pdateField, "cell 0 5,growx");
+		pdateField.setColumns(10);
+		
+		pagesField = new JTextField();
+		contentPane.add(pagesField, "cell 0 6,growx");
+		pagesField.setColumns(10);
+		
+		titleField = new JTextField();
+		contentPane.add(titleField, "cell 0 3,growx");
+		titleField.setColumns(10);
+		
+		authorsField = new JTextField();
+		contentPane.add(authorsField, "cell 0 2 2 1,growx");
+		authorsField.setColumns(10);
 		
 
 	}

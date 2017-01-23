@@ -40,7 +40,7 @@ public class CitationEdit extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][][]"));
 		
-		lblNewLabel = new JLabel("Edycja cytowania");
+		lblNewLabel = new JLabel("Edytowanie cytowania");
 		contentPane.add(lblNewLabel, "cell 0 0 2 1,alignx center");
 		
 		contentPane.add(new JLabel("Wybierz ID cytowania:"), "cell 0 1,alignx center");
@@ -86,7 +86,7 @@ public class CitationEdit extends JFrame {
 		choice.add("nie uznane");
 		choice.add("zg³oszone");
 		
-		contentPane.add(new JLabel("Google schoolar"), "cell 0 4");		
+		contentPane.add(new JLabel("Google Schoolar"), "cell 0 4");		
 		contentPane.add(choice, "cell 1 4,grow");
 		
 		choice2 = new Choice();
@@ -95,12 +95,12 @@ public class CitationEdit extends JFrame {
 		choice2.add("nie uznane");
 		choice2.add("zg³oszone");
 		
-		contentPane.add(new JLabel("Baza dancyh 2"), "cell 0 5");
+		contentPane.add(new JLabel("Web of Science"), "cell 0 5");
 		contentPane.add(choice2, "cell 1 5,grow");
 		
 
 		
-		editBtn = new JButton("Edytuj");
+		editBtn = new JButton("Edytuj cytowanie");
 		editBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DatabaseHandle db = new DatabaseHandle();		
