@@ -17,7 +17,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JOptionPane;
 
-public class CitationAddFrame extends JFrame {
+public class FrameAddCitation extends JFrame {
 
 	/**
 	 * 
@@ -28,7 +28,7 @@ public class CitationAddFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CitationAddFrame() {
+	public FrameAddCitation() {
 		contentPane = new JPanel();
 		contentPane.setLayout(new MigLayout("", "[][grow]", "[][][][][][][][]"));
 		

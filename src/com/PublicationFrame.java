@@ -1,6 +1,10 @@
 package com;
 
 
+import java.awt.Container;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -35,11 +39,11 @@ public class PublicationFrame extends JFrame {
 	public PublicationFrame() {
 		contentPane = new JPanel();
 
-		contentPane.setLayout(new MigLayout("", "[][]", "[][]"));
+		contentPane.setLayout(new MigLayout("", "[]", "[][][]"));
 		
 		
 		editFrame = new PublicationEdit();
-		contentPane.add(editFrame.getContentPane(), "cell 1 0");
+		contentPane.add(editFrame.getContentPane(), "cell 0 2");
 		
 		
 		table = new PublicationTable().getTable();
@@ -48,8 +52,13 @@ public class PublicationFrame extends JFrame {
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			@Override
 			public void valueChanged(ListSelectionEvent event) {
-				Object i =  table.getValueAt(table.getSelectedRow(), 0);
-				editFrame.getSpinnerId().setValue(i);
+				if(table.getSelectedRow()==-1){
+					editFrame.getSpinnerId().setValue(1);
+				}
+				else{
+					Object i =  table.getValueAt(table.getSelectedRow(), 0);
+					editFrame.getSpinnerId().setValue(i);
+				}
 	        }
 	    });
 		
@@ -73,7 +82,19 @@ public class PublicationFrame extends JFrame {
                 if (text.trim().length() == 0) {
                     rowSorter.setRowFilter(null);
                 } else {
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                	
+                	if(!text.contains(" ")){
+                		rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                	}
+                	else{
+                		String[] keywords = text.split(" ");
+                		List<RowFilter<Object,Object>> rfs =  new ArrayList<RowFilter<Object,Object>>();
+                		for(String keyword : keywords) {
+                			rfs.add(RowFilter.regexFilter("(?i)" + keyword, 0, 1, 2, 3, 4, 5));
+                		}
+                		RowFilter<TableModel, Object> rf = RowFilter.andFilter(rfs);
+                		rowSorter.setRowFilter(rf);
+                	}
                 }
                 
                 table.setRowSorter(rowSorter);
@@ -86,7 +107,18 @@ public class PublicationFrame extends JFrame {
                 if (text.trim().length() == 0) {
                     rowSorter.setRowFilter(null);
                 } else {
-                	rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                	if(!text.contains(" ")){
+                		rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                	}
+                	else{
+                		String[] keywords = text.split(" ");
+                		List<RowFilter<Object,Object>> rfs = new ArrayList<RowFilter<Object,Object>>();
+                		for(String keyword : keywords) {
+                			rfs.add(RowFilter.regexFilter("(?i)" + keyword, 0, 1, 2, 3, 4, 5));
+                		}
+                		RowFilter<TableModel, Object> rf = RowFilter.andFilter(rfs);
+                		rowSorter.setRowFilter(rf);
+                	}
                 }
                 
                 table.setRowSorter(rowSorter);

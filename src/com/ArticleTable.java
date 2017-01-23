@@ -9,23 +9,16 @@ import javax.swing.table.DefaultTableModel;
 
 import com.mysql.jdbc.ResultSetMetaData;
 
-public class DatabaseTable{
+public class ArticleTable{
 
 	private ResultSet rs;
 	private JTable table; 
 	
-	public DatabaseTable(int x){
+	public ArticleTable(){
 		DatabaseHandle db = new DatabaseHandle();
-		String dbName = " ";
-		
-		if(x==0){
-			dbName="articles";
-		}else if(x==1){
-			dbName="citations";
-		}
 		
 		try {
-			rs = db.stt.executeQuery("SELECT * FROM " + dbName);
+			rs = db.stt.executeQuery("SELECT * FROM articles");
 			DefaultTableModel tableModel = buildTableModel();
 			table = new JTable(tableModel);
 		} catch (SQLException e) {

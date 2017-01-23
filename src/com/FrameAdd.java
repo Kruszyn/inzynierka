@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
@@ -22,8 +23,11 @@ public class FrameAdd extends JFrame{
 	private JTextField placeField;
 	private JTextField pdateField;
 	private JTextField pagesField;
+	private JCheckBox chckbxGoogle;
+	private JCheckBox chckbxScience;
 	private JButton addArticleButton;
 	private JButton addPublicationButton;
+
 
 	public FrameAdd() {
 
@@ -67,18 +71,29 @@ public class FrameAdd extends JFrame{
 		contentPane.add(pagesField, "cell 1 5,growx");
 		pagesField.setColumns(10);
 		
+		JLabel lblNewLabel_1 = new JLabel("Obecnoœæ publikacji w bazach danych:");
+		getContentPane().add(lblNewLabel_1, "cell 0 6");
+		
+		chckbxGoogle = new JCheckBox("Google Schoolar");
+		getContentPane().add(chckbxGoogle, "cell 0 7");
+		
+		chckbxScience = new JCheckBox("Web of Science");
+		getContentPane().add(chckbxScience, "cell 0 8");
+		
+		
 		addPublicationButton = new JButton("Dodaj publikacjê");
 		addPublicationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DatabaseHandle db = new DatabaseHandle();
-				db.addPublication(titleField.getText(), authorsField.getText(), placeField.getText(), pdateField.getText(), pagesField.getText());
+				db.addPublication(titleField.getText(), authorsField.getText(), placeField.getText(), pdateField.getText(),
+						pagesField.getText(), String.valueOf(chckbxGoogle.isSelected()), String.valueOf(chckbxScience.isSelected()));
 				//TODO sprawdzenie poprawnoœci dodania
 				clearFields();
 				JOptionPane.showMessageDialog(new JFrame(),"Dodano publikacjê.");
 
 			}
 		});
-		contentPane.add(addPublicationButton, "flowx,cell 1 6,alignx center");
+		contentPane.add(addPublicationButton, "flowx,cell 1 9,alignx center");
 		
 		addArticleButton = new JButton("Dodaj artyku³");
 		addArticleButton.addActionListener(new ActionListener() {
@@ -92,7 +107,9 @@ public class FrameAdd extends JFrame{
 
 			}
 		});
-		contentPane.add(addArticleButton, "cell 1 6,alignx leading");
+		contentPane.add(addArticleButton, "cell 1 9,alignx leading");
+
+		
 
 		
 	}

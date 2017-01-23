@@ -1,8 +1,12 @@
 package com;
 
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,48 +23,48 @@ import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 
-public class CitationFrame extends JFrame {
-
+public class ArticleFrame extends JFrame {
 
 	private static final long serialVersionUID = -5007243679125293987L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
-	private CitationEdit editFrame;
+	private ArticleEdit editFrame;
 
-	public CitationFrame() {
+	public ArticleFrame(){
 		contentPane = new JPanel();
 
-		contentPane.setLayout(new MigLayout("", "[]", "[][][]"));
+		contentPane.setLayout(new MigLayout("", "[]", "[][][][]"));
 		
 		
-		editFrame = new CitationEdit();
+		editFrame = new ArticleEdit();
 		contentPane.add(editFrame.getContentPane(), "cell 0 2");
 		
 		
-		table = new CitationTable().getTable();
+		table = new ArticleTable().getTable();
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>(table.getModel());
 		table.setRowSorter(rowSorter);
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			@Override
 			public void valueChanged(ListSelectionEvent event) {
 				if(table.getSelectedRow()==-1){
-					editFrame.getSpinnerId().setValue(1);
+					editFrame.getSpinnerIdArt().setValue(1);
 				}
 				else{
 					Object i =  table.getValueAt(table.getSelectedRow(), 0);
-					editFrame.getSpinnerId().setValue(i);
+					editFrame.getSpinnerIdArt().setValue(i);
 				}
+
 	        }
 	    });
 		
 		contentPane.add(new JScrollPane(table), "cell 0 0");
 		
-
-
 		
 		
-		JLabel lblNewLabel = new JLabel("Wyszukaj cytowania:");
+		
+		
+		JLabel lblNewLabel = new JLabel("Wyszukaj artyku³y:");
 		contentPane.add(lblNewLabel, "cell 0 1,alignx left");
 		
 		
@@ -81,7 +85,7 @@ public class CitationFrame extends JFrame {
                 		String[] keywords = text.split(" ");
                 		List<RowFilter<Object,Object>> rfs =  new ArrayList<RowFilter<Object,Object>>();
                 		for(String keyword : keywords) {
-                			rfs.add(RowFilter.regexFilter("(?i)" + keyword, 0, 1, 2, 3, 4));
+                			rfs.add(RowFilter.regexFilter("(?i)" + keyword, 0, 1, 2, 3, 4, 5));
                 		}
                 		RowFilter<TableModel, Object> rf = RowFilter.andFilter(rfs);
                 		rowSorter.setRowFilter(rf);
@@ -105,7 +109,7 @@ public class CitationFrame extends JFrame {
                 		String[] keywords = text.split(" ");
                 		List<RowFilter<Object,Object>> rfs =  new ArrayList<RowFilter<Object,Object>>();
                 		for(String keyword : keywords) {
-                			rfs.add(RowFilter.regexFilter("(?i)" + keyword, 0, 1, 2, 3, 4));
+                			rfs.add(RowFilter.regexFilter("(?i)" + keyword, 0, 1, 2, 3, 4, 5));
                 		}
                 		RowFilter<TableModel, Object> rf = RowFilter.andFilter(rfs);
                 		rowSorter.setRowFilter(rf);
@@ -115,12 +119,22 @@ public class CitationFrame extends JFrame {
                 table.setRowSorter(rowSorter);
             }
 
+            
             @Override
             public void changedUpdate(DocumentEvent e) {
                 throw new UnsupportedOperationException("Not supported yet.");
             }
 
         });
+		JButton button = new JButton("odswiez");
+		contentPane.add(button, "cell 0 3,growx");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					
+				table.getSelectionModel().clearSelection();
+
+			}
+		});
     
 		contentPane.add(textField, "cell 0 1,growx");
 		textField.setColumns(10);

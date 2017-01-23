@@ -25,10 +25,11 @@ public class MenuBar{
 		JMenuItem menuItem1 = new JMenuItem("Wyœwietl bazy danych");
 		menuItem1.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
-			frame.getContentPane().setLayout(new MigLayout("", "[]", "[][][][]"));
+			frame.getContentPane().setLayout(new MigLayout("", "[][][]", "[][]"));
 			frame.getContentPane().add(new PublicationFrame().getContentPane(), "cell 0 0");
-			frame.getContentPane().add(new CitationFrame().getContentPane(), "cell 0 1");
-
+			frame.getContentPane().add(new CitationFrame().getContentPane(), "cell 1 0");
+			frame.getContentPane().add(new ArticleFrame().getContentPane(), "cell 2 0");
+			
 		//	frame.getContentPane().add(new EditArticle().getContentPane(), "cell 1 2");
 		//	frame.getContentPane().add(new JScrollPane(new DatabaseTable(0).getTable()), "cell 0 2");
 			frame.getContentPane().revalidate(); 
@@ -59,7 +60,7 @@ public class MenuBar{
 		JMenuItem menuItem22 = new JMenuItem("Cytowanie");
 		menuItem22.addActionListener((ActionEvent event) -> {
 			frame.getContentPane().removeAll();
-			frame.getContentPane().add(new CitationAddFrame().getContentPane());
+			frame.getContentPane().add(new FrameAddCitation().getContentPane());
 			frame.getContentPane().revalidate(); 
 			frame.getContentPane().repaint();
 		});

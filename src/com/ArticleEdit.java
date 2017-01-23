@@ -13,12 +13,13 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class EditArticle extends FrameEdit {
+public class ArticleEdit extends FrameEdit {
 
 
 	private static final long serialVersionUID = -5488964758369532955L;
-
-	public EditArticle() {
+	private JSpinner spinnerIdArt;
+	
+	public ArticleEdit() {
 		super();
 		
 		getContentPane().add(new JLabel("Edytowanie artyku³u"), "cell 0 0 2 1,alignx center");
@@ -26,7 +27,7 @@ public class EditArticle extends FrameEdit {
 		JLabel lblNewLabel = new JLabel("Wybierz ID edytowanego artyku³u:");
 		getContentPane().add(lblNewLabel, "cell 0 1");
 		
-		JSpinner spinnerIdArt = new JSpinner(createSpinnerModel("articles"));
+		spinnerIdArt = new JSpinner(createSpinnerModel("articles"));
 		spinnerIdArt.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				DatabaseHandle db = new DatabaseHandle();
@@ -66,6 +67,10 @@ public class EditArticle extends FrameEdit {
 		getContentPane().add(editArticleButton, "cell 1 8,alignx leading");
 
 		
+	}
+
+	public JSpinner getSpinnerIdArt() {
+		return spinnerIdArt;
 	}
 
 }

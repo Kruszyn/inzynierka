@@ -40,10 +40,10 @@ public class DatabaseHandle {
 		}
 	}
 	
-	public void addPublication(String title, String authors, String place, String Pdate, String pages){
+	public void addPublication(String title, String authors, String place, String Pdate, String pages, String gs, String wos){
 		
-		String sql = "INSERT INTO publications(authors, title, place, Pdate, pages) Values( "
-					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages  + "')";
+		String sql = "INSERT INTO publications(authors, title, place, Pdate, pages, google_schoolar, web_science) Values( "
+					+ "'" + authors + "', '" + title + "', '" + place + "', '" + Pdate + "', '" + pages  + "', " + gs  + ", " + wos  + ")";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -102,8 +102,8 @@ public class DatabaseHandle {
 	public void editCitation(String id, String artCited, String artQuot, String gs, String wos){
 		
 		
-		String sql = "UPDATE citations SET artcytowany='" + artCited + "', artcytujacy='" + artQuot + "', GoogleSchoolar='"
-				+ gs + "', WebOfScience='" + wos + "' WHERE id ='" + id + "'";
+		String sql = "UPDATE citations SET artcytowany='" + artCited + "', artcytujacy='" + artQuot + "', google_schoolar='"
+				+ gs + "', web_science='" + wos + "' WHERE id ='" + id + "'";
 		try {
 			stt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -141,17 +141,4 @@ public class DatabaseHandle {
 		
 	}
 
-	/*
-	  
-	public static void main(String[] args){
-		
-		DatabaseHandle db = new DatabaseHandle();
-		//db.addArticle(0,"ARTICLE TITLE", "AUTHORS", "place", "Pdate", "pages", 4);
-		//db.deletePublication(855);
-		//db.addCitation("1", "2", "b/d", "przyjete");
-		//db.deleteCitation(2);
-		db.editCitation(1, "188", "2", "przyjety", "adssa");
-	}
-	
-	*/
 }
